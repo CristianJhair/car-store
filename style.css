@@ -1,0 +1,394 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+body{
+    margin:0;
+    font-family: sans-serif;
+}
+#isesion{
+    color: #fff;
+}
+#tienda{
+    width: 100%;
+}
+#compra{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.form-register{
+    border: 1px solid #70727e;
+    width:98%;
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    border-radius: 7px;
+
+}
+.com-comen{
+    margin: 40px;
+    box-sizing: border-box;
+}
+select{
+    margin-bottom:15px;
+    padding: 15px;
+    font-size:15px;
+    border-radius: 3px;
+    width: 48%;
+}
+.form__titulo{
+    background: deepskyblue;
+    color:#fff;
+    padding: 20px;
+    text-align: center;
+    font-weight: 100;
+    font-size: 30px;
+    border-radius: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom: 5px solid crimson;
+
+}
+.contenedor-inputs{
+    padding: 10px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#datosp{
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bolder;
+    text-align: end;
+}
+label{
+    margin-bottom:15px;
+    padding: 15px;
+    font-size:15px;
+    border-radius: 3px;
+    width: 48%;
+    font-size: 20px;
+}
+.input-48{
+    width: 48%;
+}
+.input-100{
+    width: 100%;
+}
+.label-100{
+    width: 100%;
+}
+.user{
+    font-weight: bold;
+}
+.comentarios{
+    width: 100%;
+    margin-bottom:15px;
+    padding: 15px;
+}
+input{
+    margin-bottom:15px;
+    padding: 15px;
+    font-size:16px;
+    border-radius: 3px;
+    border: 1px solid darkgray;
+}
+textarea{
+    margin-bottom:15px;
+    padding: 15px;
+    font-size:16px;
+    border-radius: 3px;
+    border: 1px solid darkgray;
+}
+.btn-comentar{
+    background: #413efa;
+    color: #fff;
+    margin: auto;
+    padding: 10px 80px;
+    cursor: pointer;
+    font-size: 20px;
+
+}
+.btn-comentar:active{
+    transform:scale(1.08);
+}
+.btn-enviar{
+    background: crimson;
+    color: #fff;
+    margin: auto;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.btn-enviar:active{
+    transform: scale(1.05);
+}
+.form__link{
+    width: 100%;
+    margin: 7px;
+    text-align: center;
+    font-size: 14px;
+}
+
+nav{
+    margin: auto;
+    width: 500px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ul{
+    list-style: none;
+}
+
+.ul li a{
+    background-color: #000000;
+    color: #fff;
+    text-decoration: none;
+    padding: 18px 22px;
+    display: block;
+}
+.ul li a:hover{
+    background-color: #434343;
+}
+.ul > li{
+    float: left;
+}
+.ul li ul{
+    display: none;
+    position: absolute;
+    min-width: 140px;
+}
+.ul li:hover > ul {
+    display: block;
+}
+.ul li ul li{
+    position: relative;
+}
+.ul li ul li ul {
+    right: -140px;
+    top: 0px;
+}
+.contenedor{
+    background: #ccc;
+    width: 90%;
+    max-width: 1250px;
+    margin: auto;
+
+    /*Flex */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+h1{
+    width: 100%;
+    font-size: 50px;
+    text-align: center;
+    height: 50px;
+    margin: 30px;;
+
+}
+header{
+    background: #f5f4f4;
+    width: 100%;
+    padding: 20px;
+    /*Flex*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+    border: 1px solid gainsboro;
+
+}
+header .logo img{
+    width: 250px;
+    vertical-align: top;
+}
+header nav{
+    width: 70%;
+    /*Flex*/
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+.main {
+    background: #ffffff;
+    width: 100%;
+    /*Flex*/
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: flex-start;*/
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+    min-height: 900px;
+    border: 0.5px solid gainsboro;
+}
+.main .prod{
+    background: #ffffff;
+    width: 300px;
+    min-height: 380px;
+    margin: 30px;
+    border: 4px solid #000000;
+    border-radius: 4px;
+}
+.prod:hover{
+    background: rgb(231, 231, 231);
+    transform: scale(1.1);
+}
+.prod{
+    transition: 0.3s;
+}
+
+.main .prod .imagen{
+    height: 250px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+.main #bienvenida{
+    width: 100%;
+    
+}
+
+.prod{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+#comprar{
+    padding: 5px;
+    font-size: 20px;
+    color: #fff;
+    background: crimson;
+    cursor: pointer;
+    border-radius: 4px;
+}
+#comprar:active{
+    transform: scale(1.05);
+}
+.comprar{
+    font-size: 25px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.comprar-promos{
+    font-size: 25px;
+    padding: 10px;
+    width: 100%;
+}
+.precio{
+    width: 49%;
+    font-weight: bolder;
+}
+.puntos{
+    width: 49%;
+    color: #413efa;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+}
+.precioa{
+    width: 49%;
+    color: red;
+}
+.nombrep{
+    text-align: center;
+    padding: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    width: 100%;
+    font-size: 25px;
+}
+footer{
+    color: #ccc;
+    background: #2c3e50;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+}
+header .usuarioc{
+    display: flex;
+    font-size: 25px;
+    width: 100%;
+    justify-content: flex-end;
+}
+#u{
+    width: 48%;
+}
+#usuario{
+    width: 48%;
+    font-weight: bolder;
+}
+#punt{
+    width: 48%;
+    color: #413efabd;
+}
+#puntaje{
+    width: 48%;
+    font-weight: bolder;
+    color: #413efabd;
+}
+.nombre{
+    background: rgb(255, 255, 255);
+    color: rgb(7, 7, 7);
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-width: 300px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px;
+    border: 7px outset #70727e;
+}
+.nombre:hover{
+    transform: scale(1.07);
+}
+.nombre{
+    transition: 0.5s;
+}
+.nos>p{
+    margin: 20px;
+    font-size: 20px;
+}
+.nos{
+    padding: 40px;
+}
+.hist{
+    padding: 40px;
+}
+#news{
+    margin:  auto;
+    display: block;
+    margin-bottom: 150px;
+    border-radius: 8px;
+}
+.hist>p{
+    margin: 30px;
+    font-size: 20px;
+}
+.hist>ol>li{
+    margin: 30px;
+    font-size: 20px;
+}
+iframe{
+    margin: 0 auto;
+}
+.tabla{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.tabla th, .tabla td{
+    border: 1px solid #ccc;
+    padding: 15px;
+}
