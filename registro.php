@@ -17,23 +17,16 @@
                     <p style= "color:red ;">Confirme correctamente su contraseña o debe llenar los espacios en blanco.</p>
                 <?php } ?>
                 <?php if(isset($_GET["error2"])) { ?>
-                    <p style= "color:red ; padding: 5px; text-align:center;">Debe completar todos sus datos o ya existe ese correo/DNI/Número de cuenta.</p>
+                    <p style= "color:red ; padding: 5px; text-align:center;">Esa cuenta de correo se encuentra registrada</p>
                 <?php } ?>
                 <div class="contenedor-inputs">
-                    <input type="text" name="nombre" placeholder="Nombre completo"
-                    class="input-48">
-                    <input type="text" name="apellidos" placeholder="Apellidos"
-                    class="input-48">
-                    <input type="email" name="correo" placeholder="Correo " class="input-100">
-                    <input type="date" name="fecha" class="input-48">
-                    <input type="text" name="telefono" placeholder="Teléfono" maxlength="15"
-                    class="input-48">
-                    <input type="text" name="dni" placeholder="DNI" maxlength="8" class="input-100">
-                    <input type="text" name="numcuenta" placeholder=" Número de cuenta" maxlength="13"
-                    class="input-100">
-                    <input type="password" name="contraseña" placeholder="Contraseña" class="input-100">
-                    <input type="password" name="recontraseña" placeholder="Confirmar contraseña"
-                    class="input-100">
+                    <input type="text" name="nombre" placeholder="Nombre completo" class="input-48" required>
+                    <input type="text" name="apellidos" placeholder="Apellidos" class="input-48" required>
+                    <input type="text" name="direccion" placeholder="Direccion " class="input-100" required>
+                    <input type="email" name="correo" placeholder="Correo " class="input-100" required>
+                    <input type="text" name="usuario" placeholder="Usuario " class="input-100" required>
+                    <input type="password" name="contraseña" placeholder="Contraseña" class="input-48" required>
+                    <input type="password" name="recontraseña" placeholder="Confirmar contraseña" class="input-48" required>
                     <input type="submit" value="CREAR CUENTA" class="btn-enviar">
                     <p class="form__link">¿Ya tienes cuenta?<a href="login.php">Ingresa aquí</a></p>
                 </div>

@@ -11,9 +11,8 @@ include 'validacion.php';
 
  include 'conexion.php';
 
- $sentencia= $db->query("SELECT * FROM usuario where correo='$correo'");
-
- $u = $sentencia->fetch();
+ $sentencia= oci_parse($db,"SELECT * FROM cliente where EMAIL='$correo'");
+ oci_execute($sentencia);
 
 ?>
 
@@ -33,19 +32,16 @@ include 'validacion.php';
         
         <section class="main">
         
-        <form action="editar_usuario.php" method="get" class="form-register">
+        <form action="editar_usuario.php" method="post" class="form-register">
             <h2 class="form__titulo">MI PERFIL</h2>
             <div class="contenedor-inputs">
-                
-                <label for="">Nombres:   </label><label id="datosp"for=""><?php echo $u["nombres"]?></label>
-                <label for="">Apellidos:   </label><label id="datosp"for=""><?php echo $u["apellidos"]?></label>
-                <label for="">Correo:    </label><label id="datosp"for=""><?php echo $u["correo"] ?></label>
-                <label for="">Fecha de nacimiento:    </label><label id="datosp"for=""><?php echo $u["fecha_nacimiento"] ?></label>
-                <label for="">Telefono:   </label><label id="datosp"for=""><?php echo $u["telefono"]?></label>
-                <label for="">DNI:     </label><label id="datosp"for=""><?php echo $u["dni"]?></label>
-                <label for="">Numero de cuenta:   </label><label id="datosp"for=""><?php echo $u["numero de cuenta"]?></label>
-                <input type="hidden" name="id" value="<?php echo $u["id"] ?>">
+                <?php while(($u = oci_fetch_assoc($sentencia))!=false){ ?>
+                <label>Nombres:   </label><label id="datosp"for=""><?php echo $u["NOMBRE"]?></label>
+                <label>Apellidos:   </label><label id="datosp"for=""><?php echo $u["APELLIDO"]?></label>
+                <label>Correo:    </label><label id="datosp"for=""><?php echo $u["EMAIL"] ?></label>
+                <input type="hidden" name="id" value="<?php echo $u["CLIENTE_ID"] ?>">
                 <input type="submit" class="btn-enviar" value="EDITAR">
+                <?php } ?>
             </div>
         </form>
             

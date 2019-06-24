@@ -2,12 +2,13 @@
 
 #Entrada
 
-$id = $_POST["id"];
-$c = $_POST["correo"];
-$f = $_POST["fecha"];
-$tel = $_POST["telef"];
-$p1 = $_POST["p1"];
-$p2=$_POST["p2"];
+$nom = $_POST["nombre"];
+$ap = $_POST["apellidos"];
+$dr = $_POST["direccion"];
+$co = $_POST["correo"];
+$us = $_POST["usuario"];
+$p1 = $_POST["contraseña"];
+$p2 = $_POST["recontraseña"];
 
 
 #proceso
@@ -15,21 +16,17 @@ $p2=$_POST["p2"];
 
 $validacion=true;
 
-if($c==null or $f==null or $tel==null or $p1==null or $p2==null){
-    $validacion=false;
+if($p1 != $p2) {
+    $validacion = false;
 }
 else{
-    if($p1 != $p2) {
-        $validacion = false;
-    }
-    else{
-        include 'conexion.php';
-        $p1 = sha1($p1);
-        $db->query("UPDATE usuario SET correo='$c', fecha_nacimiento='$f', telefono='$tel', password='$p1' where id='$id'");
-        
-    }
-
+    include 'conexion.php';
+    $p1 = sha1($p1);
+    $db->query("UPDATE CLIENTE SET email='$c', fecha_nacimiento='$f', telefono='$tel', password='$p1' where id='$id'");
+    
 }
+
+
 $estado=false;
 include 'conexion.php';
 $stmt= $db->query("SELECT * FROM usuario WHERE correo='$c'");

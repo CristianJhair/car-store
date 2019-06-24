@@ -3,12 +3,11 @@ session_start();
 include 'bloquear.php';
 ?>
 <?php
-$id = intval($_GET["id"]);
+$id = $_POST["id"];
 include 'conexion.php';
 
-$stmt= $db->query("SELECT * FROM usuario where id='$id'");
-
-$u = $stmt->fetch();
+$stmt= oci_parse($db,"SELECT * FROM cliente where cliente_id='$id'");
+oci_execute($stmt);
 
 ?>
 
@@ -29,20 +28,24 @@ $u = $stmt->fetch();
             <form action="procesar_editar_usuario.php" method="post" class="form-register">
                     <h2 class="form__titulo">EDITA TU PERFIL</h2>
                     <div class="contenedor-inputs">
-                    <input type="hidden" name="id" value="<?php echo $u["id"] ?>" >
-                    <?php if(isset($_GET["error1"])) { ?>
-                        <p style= "color:red ;">Confirme correctamente su contraseña.</p>
-                    <?php } ?>
-                    <?php if(isset($_GET["error2"])) { ?>
-                        <p style= "color:red ;">Debe completar todos sus datos.</p>
-                    <?php } ?>
-                    
-                    <input type="email" name="correo" placeholder="Correo" class="input-100">
-                    <input type="date" name="fecha" class="input-48">
-                    <input type="text" name="telef" placeholder="Teléfono" maxlength="15" class="input-48"> 
-                    <input type="password" name="p1" placeholder="Contraseña actual/nueva" class="input-100">
-                    <input type="password" name="p2" placeholder="Confirmacion contraseña actual/nueva" class="input-100" >
-                    <input type="submit" class="btn-enviar" value="CONFIRMAR">
+                        <input type="hidden" name="id" value="<?php echo $u["id"] ?>" >
+                        <?php if(isset($_GET["error1"])) { ?>
+                            <p style= "color:red ;">Confirme correctamente su contraseña.</p>
+                        <?php } ?>
+                        <?php if(isset($_GET["error2"])) { ?>
+                            <p style= "color:red ;">Debe completar todos sus datos.</p>
+                        <?php } ?>
+                        
+                        <?php while(($u = oci_fetch_assoc($stmt))!=false){ ?>
+                        <input type="text" name="nombre" placeholder="Nombre completo" class="input-48" required value="<?php echo $u["NOMBRE"] ?>">
+                        <input type="text" name="apellidos" placeholder="Apellidos" class="input-48" required value="<?php echo $u["APELLIDO"] ?>">
+                        <input type="text" name="direccion" placeholder="Direccion " class="input-100" required value="<?php echo $u["DIRECCION"] ?>">
+                        <input type="email" name="correo" placeholder="Correo " class="input-100" required value="<?php echo $u["EMAIL"] ?>">
+                        <input type="text" name="usuario" placeholder="Usuario " class="input-100" required value="<?php echo $u["USUARIO"] ?>">
+                        <input type="password" name="contraseña" placeholder="Contraseña" class="input-48" required >
+                        <input type="password" name="recontraseña" placeholder="Confirmar contraseña" class="input-48" required >
+                        <input type="submit" class="btn-enviar" value="CONFIRMAR">
+                        <?php } ?>
                     </div>
             </form>
         </section>

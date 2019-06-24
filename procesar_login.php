@@ -7,22 +7,21 @@ $p = $_POST["contraseña"];
 #Proceso
 
 $validacion = false;
-$p = sha1($p);
+#$p = sha1($p);
 include 'conexion.php';
-$stmt= $db->query("SELECT * FROM usuario WHERE correo='$c' AND password='$p'");
-$usuarios = $stmt->fetchAll();
+$stmt= oci_parse($db,"SELECT * FROM cliente WHERE email='$c'");
+oci_execute($stmt);
+$res = oci_fetch_assoc($stmt);
 
+$validacion = false;
 
-if(count($usuarios)==1){
+if(oci_num_rows($stmt)==1){
     $validacion = true;
     session_start();
-    $u= $usuarios[0];
-    $_SESSION["correo"] = $u["correo"];
-    $_SESSION["nombres"] = $u["nombres"];
-    $_SESSION["apellidos"] = $u["apellidos"];
-
+    $_SESSION["correo"] = $res["EMAIL"];
+    $_SESSION["nombres"] = $res["NOMBRE"];
+    $_SESSION["apellidos"] = $res["APELLIDO"];
 }
-
 
 
 #Salida

@@ -10,13 +10,10 @@ include 'validacion.php';
 $id = intval($_GET["id"]);
 
 include 'conexion.php';
-$stmt= $db->query("SELECT * FROM productos where id='$id'");
-$u = $stmt->fetch();
+$stmt= oci_parse($db,"SELECT * FROM MODELO where modelo_id='$id'");
+oci_execute($stmt);
 
 
-$nom = $u["nombre"];
-$s= $db->query("SELECT * FROM comentario where producto='$nom'");
-$c= $s->fetchAll();
                 
 
 ?>
@@ -36,22 +33,13 @@ $c= $s->fetchAll();
         <section class="main">
             <h1>Tienda</h1>
             <div id="tienda">
-                <h2 class="com-comen">Comprar <?php echo $u["nombre"] ?></h2>
+                <?php while(($u = oci_fetch_assoc($stmt))!=false){ ?>
+                <h2 class="com-comen">Comprar <?php echo $u["NOMBRE_MODELO"] ?></h2>
                 <div id="compra">               
                     <form action="Procesar_compra.php" method="post" class="form-register">
                         <div class="contenedor-inputs">
-                        <?php if(isset($_GET["error4"])) { ?>
-                            <p style= "color:red ;">Confirme correctamente su numero de cuenta o lleno todos los campos.</p>
-                        <?php } ?>
-                        <?php if(isset($_GET["error6"])) { ?>
-                            <p style= "color:red ;">No tiene suficiente saldo disponible en su cuenta.</p>
-                        <?php } ?>
-                        <?php if(isset($_GET["error5"])) { ?>
-                            <p style= "color:red ;">No hay esa cantidad de cubos disponibles.Vuelva en otro momento</p>
-                        <?php } ?>
-                        <input type="hidden" name="id" value="<?php echo $u["id"] ?>" >
-                                             
-                        <label class="label-48">Precio Unitario: </label> <label class="label-48">S/ <?php echo $u["precio"] ?></label>
+                                                                     
+                        <label class="label-48">Precio Unitario: </label> <label class="label-48">S/ <?php echo $u["PRECIO"] ?></label>
                         <label class="label-48">Cantidad: </label>
                         <select name="cantidad" class="input-48">
                             <option value="1">1</option> 
@@ -72,38 +60,14 @@ $c= $s->fetchAll();
                         </form>
                     <!--imagen-->
                     <div class="prod">
-                        <div class="imagen"><img src="<?php echo $u["imagen"] ?>" alt="" height="256" width="280"></div>
-                        <div class="nombrep"><?php echo $u["nombre"] ?></div>
+                        <div class="imagen"><img src="<?php echo $u["IMAGEN"] ?>" alt="" height="256" width="280"></div>
+                        <div class="nombrep"><?php echo $u["NOMBRE_MODELO"] ?></div>
                         <div class="comprar">
-                            <div class="precio" style="text-align:center; width:100%; font-size: 35px;"> <p> S/ <?php echo $u["precio"] ?> </p></div>
+                            <div class="precio" style="text-align:center; width:100%; font-size: 35px;"> <p> S/ <?php echo $u["PRECIO"] ?> </p></div>
                         </div>
                     </div>
                 </div>
-                <h2 class="com-comen">Foro de comentarios del cubo <?php echo $u["nombre"] ?> </h2>
-                    <form action="Procesar_foro.php" method="post" class="form-register">
-                        <div class="contenedor-inputs">
-                        <?php if(isset($_GET["error2"])) { ?>
-                        <p style= "color:red ;">Debe escribir algun comentario.</p>
-                        <?php } ?>
-                        <input type="hidden" name="id" value="<?php echo $u["id"] ?>" >
-                        <input type="hidden" name="usuario" value="<?php echo $_SESSION["nombres"] ?>  <?php echo $_SESSION["apellidos"] ?>">
-                        <label for=""  class="label-48">Usuario:</label> <label for=""  class="label-48"> <?php echo $_SESSION["nombres"] ?>  <?php echo $_SESSION["apellidos"] ?></label>
-                        <textarea name="comentario" class="input-100" placeholder="Escribe algo"></textarea>
-                        <input type="submit" class="btn-comentar" value="Comentar">
-                        </div>
-                    </form>
-                    <p><br><br><br></p>
-                    <?php foreach ($c as $j) { ?>
-                    <div class="form-register">
-                        <div class="contenedor-inputs">
-                        <p class="user"><?php echo $j["usuario"] ?></p>
-                        <p class="comentarios"><?php echo $j["contenido"] ?></p> 
-                        <p class="comentarios"><?php echo $j["fecha"] ?></p> 
-                        <p>------------------------------------------------------------------- <br><br>    </p>
-                        </div>
-                    </div>
-                    <?php }?>
-                    
+                <?php } ?>
                     
             </div>
         </section>

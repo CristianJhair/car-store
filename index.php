@@ -5,8 +5,9 @@ session_start();
 
 <?php
  include 'conexion.php';
- $sentencia= $db->query("SELECT * FROM productos where id in (5,10,24,34,48,40)");
- $nv = $sentencia->fetchAll();
+ $sentencia= oci_parse($db,"SELECT * FROM modelo");
+ oci_execute($sentencia);
+ 
 
 ?>
 
@@ -26,20 +27,17 @@ session_start();
         
         <section class="main">
         <h1>Ultimas Novedades</h1>
-        <?php foreach ($nv as $n){ ?>
+        <?php while(($n = oci_fetch_assoc($sentencia))!=false){ ?>
         <div class="prod">
-                <div class="imagen"><img src="<?php echo $n["imagen"] ?>" alt="" height="256" width="280"></div>
-                <div class="nombrep"><?php echo $n["nombre"] ?></div>
+                <div class="imagen"><img src="<?php echo $n["IMAGEN"] ?>" alt="" height="256" width="280"></div>
+                <div class="nombrep"><?php echo $n["NOMBRE_MODELO"] ?></div>
 
                 <div class="comprar">
-                    <div class="precio"> <p> S/ <?php echo $n["precio"] ?> </p></div>
-                    
+                    <div class="precio"> <p> S/ <?php echo $n["PRECIO"] ?> </p></div>
                     <form action="comprar.php" method="get">
-                    <input  type="hidden" name="id"  value="<?php echo $n["id"] ?>" > 
-                                        
+                    <input  type="hidden" name="id"  value="<?php echo $n["MODELO_ID"] ?>" >                
                     <button type="submit" id="comprar">Comprar</button>
                     </form>
-                    
                 </div>
         </div>
         <?php } ?>
