@@ -2,6 +2,12 @@
 session_start();
 include 'bloquear.php';
 ?>
+<?php 
+include 'conexion.php';
+$stmt= oci_parse($db, "SELECT * FROM vehiculo v JOIN modelo m on v.modelo_id = m.modelo_id");
+oci_execute($stmt);
+$i=1;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,31 +29,22 @@ include 'bloquear.php';
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>First</th>
-                        <th>Last</th>
-                        <th>Handle</th>
-                        
+                        <th>Placa</th>
+                        <th>Modelo</th>
+                        <th>Tarjeta de propiedad</th>
+                        <th>SOAT</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php while (($n = oci_fetch_assoc($stmt))!=false) { ?>
                     <tr>
-                        <th>1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th><?php echo $i++; ?></th>
+                        <td><?php echo $n["PLACA"] ?></td>
+                        <td><?php echo $n["NOMBRE_MODELO"] ?></td>
+                        <td><?php if( $n["TARJETA_PROPIEDAD"]==1){ echo 'Si';}else{ echo 'No';} ?></td>
+                        <td><?php if( $n["SOAT"]==1){ echo 'Si';}else{ echo 'No';}  ?></td>
                     </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    <?php } ?>
                 </tbody>
             </table>
             
