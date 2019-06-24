@@ -28,12 +28,11 @@ oci_execute($stmt);
             <form action="procesar_editar_usuario.php" method="post" class="form-register">
                     <h2 class="form__titulo">EDITA TU PERFIL</h2>
                     <div class="contenedor-inputs">
-                        <input type="hidden" name="id" value="<?php echo $u["id"] ?>" >
                         <?php if(isset($_GET["error1"])) { ?>
                             <p style= "color:red ;">Confirme correctamente su contraseña.</p>
                         <?php } ?>
                         <?php if(isset($_GET["error2"])) { ?>
-                            <p style= "color:red ;">Debe completar todos sus datos.</p>
+                            <p style= "color:red ;">Datos incompletos/Asegúrese de tener un email único</p>
                         <?php } ?>
                         
                         <?php while(($u = oci_fetch_assoc($stmt))!=false){ ?>
@@ -44,6 +43,7 @@ oci_execute($stmt);
                         <input type="text" name="usuario" placeholder="Usuario " class="input-100" required value="<?php echo $u["USUARIO"] ?>">
                         <input type="password" name="contraseña" placeholder="Contraseña" class="input-48" required >
                         <input type="password" name="recontraseña" placeholder="Confirmar contraseña" class="input-48" required >
+                        <input type="hidden" name="id" value="<?php echo $u["id"] ?>" >
                         <input type="submit" class="btn-enviar" value="CONFIRMAR">
                         <?php } ?>
                     </div>

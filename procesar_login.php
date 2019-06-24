@@ -13,6 +13,7 @@ $stmt= oci_parse($db,"SELECT * FROM cliente WHERE email='$c' AND password='$p'")
 oci_execute($stmt);
 $res = oci_fetch_assoc($stmt);
 
+
 $validacion = false;
 
 if(oci_num_rows($stmt)==1){
