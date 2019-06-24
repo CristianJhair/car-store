@@ -20,7 +20,7 @@ oci_execute($modelo);
     <div class="contenedor">
         <?php include 'cabecera.php' ?>
         <section class="main">
-            <form action="Procesar_registro_vehiculo.php" method="post" class="form-register">
+            <form action="procesar_registro_vehiculo.php" method="post" class="form-register">
                 <h2 class="form__titulo">NUEVO VEHÍCULO</h2>
 
                 <?php if(isset($_GET["error2"])) { ?>
@@ -39,7 +39,7 @@ oci_execute($modelo);
                 <div class="contenedor-inputs">
                     <span class="input-100">Datos generales del Vehículo</span>
 
-                    <input type="text" name="placa" placeholder="Ingrese la placa del vehículo.." class="input-100" required>
+                    <input type="text" name="placa" placeholder="Ingrese la placa del vehículo.." maxlength="8" class="input-100" required>
                     <select name="tarjeta" id="" class="input-48" required>
                         <option value="">Tarjeta de propiedad?</option>
                         <option value="1">Si tiene</option>

@@ -7,12 +7,13 @@
     <nav>
         <ul class="ul">
             <li><a href="index.php">Inicio</a></li>    
-            
+            <?php if(isset($_SESSION["correo"]) && $_SESSION["correo"]!="admin@admin.com" || !isset($_SESSION["correo"])){ ?>
             <li><a href="index.php">Acerca de</a>
                 <ul>
                     <li><a href="nosotros.php">Nosotros</a></li>
                 </ul>
-            </li>   
+            </li>
+            <?php } ?>   
             <?php if(isset($_SESSION["correo"]) && $_SESSION["correo"]=="admin@admin.com"){ ?>
                 <li><a href="registro_modelo.php">Agregar Modelo</a></li>
                 <li><a href="vehiculos.php">Vehículos</a></li>
@@ -28,7 +29,9 @@
                 </ul>
                 
                 </li>
+                <?php if($_SESSION["correo"]!="admin@admin.com"){ ?>
                 <li><a href="perfil.php">Mi perfil</a></li>
+                <?php } ?>
                 <li><a href="logout.php">Cerrar sessión</a></li>
             <?php } ?>
             

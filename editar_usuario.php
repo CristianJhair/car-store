@@ -3,10 +3,10 @@ session_start();
 include 'bloquear.php';
 ?>
 <?php
-$id = $_POST["id"];
+$correo = $_SESSION["correo"];
 include 'conexion.php';
 
-$stmt= oci_parse($db,"SELECT * FROM cliente where cliente_id='$id'");
+$stmt= oci_parse($db,"SELECT * FROM cliente where email='$correo'");
 oci_execute($stmt);
 
 ?>
@@ -43,7 +43,7 @@ oci_execute($stmt);
                         <input type="text" name="usuario" placeholder="Usuario " class="input-100" required value="<?php echo $u["USUARIO"] ?>">
                         <input type="password" name="contraseña" placeholder="Contraseña" class="input-48" required >
                         <input type="password" name="recontraseña" placeholder="Confirmar contraseña" class="input-48" required >
-                        <input type="hidden" name="id" value="<?php echo $u["id"] ?>" >
+                        <input type="hidden" name="id" value="<?php echo $u["CLIENTE_ID"] ?>" >
                         <input type="submit" class="btn-enviar" value="CONFIRMAR">
                         <?php } ?>
                     </div>

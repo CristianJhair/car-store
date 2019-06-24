@@ -33,6 +33,7 @@ $i=1;
                         <th>Modelo</th>
                         <th>Tarjeta de propiedad</th>
                         <th>SOAT</th>
+                        <th>Accion</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,12 @@ $i=1;
                         <td><?php echo $n["NOMBRE_MODELO"] ?></td>
                         <td><?php if( $n["TARJETA_PROPIEDAD"]==1){ echo 'Si';}else{ echo 'No';} ?></td>
                         <td><?php if( $n["SOAT"]==1){ echo 'Si';}else{ echo 'No';}  ?></td>
+                        <td>
+                        <form action="borrar_vehiculo.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo $n["PLACA"] ?>">
+                            <button id="button-table" type="submit">Borrar</button>
+                        </form>
+                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>

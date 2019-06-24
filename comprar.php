@@ -10,7 +10,7 @@ include 'validacion.php';
 $id = intval($_GET["id"]);
 
 include 'conexion.php';
-$stmt= oci_parse($db,"SELECT * FROM MODELO where modelo_id='$id'");
+$stmt= oci_parse($db,"SELECT * FROM MODELO M JOIN CARACTERISTICAS C ON M.MODELO_ID = C.CARACTERISTICAS_ID where MODELO_ID=$id");
 oci_execute($stmt);
 
 
@@ -36,26 +36,21 @@ oci_execute($stmt);
                 <?php while(($u = oci_fetch_assoc($stmt))!=false){ ?>
                 <h2 class="com-comen">Comprar <?php echo $u["NOMBRE_MODELO"] ?></h2>
                 <div id="compra">               
-                    <form action="Procesar_compra.php" method="post" class="form-register">
+                    <form action="" method="" class="form-register" class="compra-form">
                         <div class="contenedor-inputs">
                                                                      
-                        <label class="label-48">Precio Unitario: </label> <label class="label-48">S/ <?php echo $u["PRECIO"] ?></label>
-                        <label class="label-48">Cantidad: </label>
-                        <select name="cantidad" class="input-48">
-                            <option value="1">1</option> 
-                            <option value="2" >2</option>
-                            <option value="3">3</option>
-                            <option value="4" >4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <input type="text" name="pais" placeholder="Pais" class="input-48">
-
-                            <input type="text" name="provincia" placeholder="Provincia" class="input-48">
-                            <input type="text" name="direccion" placeholder="Direccion" class="input-100">
-
-                            <label class="label-48">Propietario: </label><label class="label-48"> <?php echo $_SESSION["nombres"] ?> <?php echo $_SESSION["apellidos"] ?> </label>
-                            <input type="text" name="numcuenta" placeholder="Número de cuenta" class="input-100"> 
-                            <input class="btn-enviar"type="submit" value="Comprar">
+                        <label class="label-48">Precio </label> <label class="label-48">S/ <?php echo $u["PRECIO"]; ?></label>
+                        <label class="label-48">Año del modelo: </label> <label class="label-48"> <?php echo $u["YEAR_MODEL"] ?></label>
+                        <label class="label-48">Color: </label> <label class="label-48"><?php echo $u["COLOR"] ?></label>
+                        <label class="label-48">Numero de asientos: </label> <label class="label-48"> <?php echo $u["NUM_ASIENTOS"] ?></label>
+                        <label class="label-48">Numero de puertas: </label> <label class="label-48"> <?php echo $u["NUM_PUERTAS"] ?></label>
+                        <label class="label-48">Caja de cambios: </label> <label class="label-48"> <?php echo $u["CAJA_CAMBIOS"] ?></label>
+                        <label class="label-48">Tipo de motor: </label> <label class="label-48"> <?php echo $u["TIPO_MOTOR"] ?></label>
+                        <label class="label-48">Capacidad del motor: </label> <label class="label-48"> <?php echo $u["CAPACIDAD_MOTOR"] ?></label>
+                        <label class="label-48">Traccion: </label> <label class="label-48"> <?php echo $u["TRACCION"] ?></label>
+                        <label class="label-48">Combustible: </label> <label class="label-48"> <?php echo $u["COMBUSTIBLE"] ?></label>
+                        <label class="label-48">Millas recorridas: </label> <label class="label-48"> <?php echo $u["MILLAS_RECORRIDAS"] ?></label>
+                        
                             </div>
                         </form>
                     <!--imagen-->

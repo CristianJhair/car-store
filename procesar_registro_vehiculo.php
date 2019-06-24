@@ -22,6 +22,7 @@ while(($user = oci_fetch_assoc($stmt))!=false){
 if($validacion==true){
     $stmt= oci_parse($db,"INSERT INTO vehiculo VALUES ('$placa',$marca,$tarjeta,$soat)");
     oci_execute($stmt);
+    echo 'bien';
 }
 
 

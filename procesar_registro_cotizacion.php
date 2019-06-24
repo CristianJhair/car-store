@@ -27,7 +27,9 @@ if($validacion==true){
     oci_execute($stmt);
 }
 #Salida
-echo 'bien';
 
+if($validacion==true){
+    header("Location: index.php");
+}
 
 ?>

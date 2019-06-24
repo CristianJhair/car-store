@@ -19,7 +19,7 @@ session_start();
         <div class="nos">
             <h2 style="font-size: 35px;">USAPERCARS: Expande tu horizonte</h2>
             
-            <img src="http://hispanomotors.com/img/h1nosotros.jpg" alt="" width="150px">
+            <img src="http://hispanomotors.com/img/h1nosotros.jpg" alt="" width="1000px">
 
             <p>Somos apasionados de los automóviles y nos llena de satisfacción hacer realidad los sueños de nuestros clientes, permitiéndoles acceder a automóviles en excelente estado a los precios 
             

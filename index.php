@@ -34,10 +34,20 @@ session_start();
 
                 <div class="comprar">
                     <div class="precio"> <p> S/ <?php echo $n["PRECIO"] ?> </p></div>
-                    <form action="comprar.php" method="get">
-                    <input  type="hidden" name="id"  value="<?php echo $n["MODELO_ID"] ?>" >                
-                    <button type="submit" id="comprar">Comprar</button>
-                    </form>
+                    
+                    <?php if(isset($_SESSION["correo"]) && $_SESSION["correo"]=="admin@admin.com"){ ?>
+                        <form action="comprar.php" method="get">
+                        <input  type="hidden" name="id"  value="<?php echo $n["MODELO_ID"] ?>" >                
+                        <button type="submit" id="comprar">Editar</button>
+                        </form>
+                        
+                    <?php }else{ ?>
+                        <form action="comprar.php" method="get">
+                        <input  type="hidden" name="id"  value="<?php echo $n["MODELO_ID"] ?>" >
+                        <button type="submit" id="comprar">Detalles</button>
+                        </form>
+                    <?php } ?>
+
                 </div>
         </div>
         <?php } ?>
