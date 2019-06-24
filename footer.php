@@ -1,3 +1,3 @@
 <footer>
-    <p>Todos los derechos reservados MARKETCUBE - 2018, Lima Perú.</p>
+    <p>Todos los derechos reservados USAPERCARS - 2019, Lima Perú.</p>
 </footer>
