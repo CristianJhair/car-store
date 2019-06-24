@@ -2,7 +2,7 @@
 
 <header>
     <div class="logo">
-        <img src="MarketCube.jpg" alt="">
+        <img src="UsaCars.jpg" alt="">
     </div>
     <nav>
         <ul class="ul">
