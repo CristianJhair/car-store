@@ -13,16 +13,22 @@
                     <li><a href="nosotros.php">Nosotros</a></li>
                 </ul>
             </li>   
-            <?php if($_SESSION["correo"]=="admin@admin.com"){ ?>
+            <?php if(isset($_SESSION["correo"]) && $_SESSION["correo"]=="admin@admin.com"){ ?>
                 <li><a href="registro_modelo.php">Agregar Modelo</a></li>
+                <li><a href="vehiculos.php">Vehículos</a></li>
+                <li><a href="cotizaciones.php">Cotizaciones</a></li>
             <?php } ?>
             <?php if(!isset($_SESSION["correo"])){?>
                 <li><a href="registro.php">Crear cuenta</a></li>
                 <li><a href="login.php">Inicar sessión</a></li>
             <?php } else {?>
-                <li><a href="promociones.php">Promociones</a></li>
+                <li><a href="promociones.php">Promociones</a>
+                <ul>
+                    <li><a href="nosotros.php" >Fiestas patrias</a></li>
+                </ul>
+                
+                </li>
                 <li><a href="perfil.php">Mi perfil</a></li>
-                <li><a href="contacto.php">Contacto</a></li>
                 <li><a href="logout.php">Cerrar sessión</a></li>
             <?php } ?>
             
