@@ -5,9 +5,8 @@ include 'bloquear.php';
 
 <?php
  include 'conexion.php';
- $sentencia= $db->query("SELECT * FROM promociones");
-
- $p = $sentencia->fetchAll();
+ $sentencia= oci_parse($db,"SELECT * FROM modelo where id_catalogo = 22");
+ oci_execute($sentencia);
 
 ?>
 
@@ -22,27 +21,23 @@ include 'bloquear.php';
     <title>Promociones</title>
 </head>
 <body>
-    <div class="contenedor">
+<div class="contenedor">
         <?php include 'cabecera.php' ?>
         
         <section class="main">
-        <h1>Promociones</h1>
-        <?php foreach ($p as $n){ ?>
+        <h1>Ultimas Novedades</h1>
+        <?php while(($n = oci_fetch_assoc($sentencia))!=false){ ?>
         <div class="prod">
-                <div class="imagen"><img src="<?php echo $n["imagen"] ?>" alt="" height="256" width="280"></div>
-                <div class="nombrep"><?php echo $n["nombre"] ?></div>
+                <div class="imagen"><img src="<?php echo $n["IMAGEN"] ?>" alt="" height="256" width="280"></div>
+                <div class="nombrep"><?php echo $n["NOMBRE_MODELO"] ?></div>
 
                 <div class="comprar">
-                    <p class="precio">S/ <?php echo $n["precio rebajado"] ?> </p> 
-                    <p class="puntos"> + <?php echo $n["puntos"] ?>puntos </p>
-                    <p class="precioa"> <s>S/ <?php echo $n["precio actual"] ?></s></p>
-                    <form action="exclusiva.php" method="get" >
-                        <input type="hidden" name="id" value="<?php echo $n["id"] ?>" >
-                    
-                        <button type="submit" id="comprar">Comprar</button>
+                    <div class="precio"> <p> S/ <?php echo $n["PRECIO"] ?> </p></div>
+                    <form action="comprar.php" method="get">
+                    <input  type="hidden" name="id"  value="<?php echo $n["MODELO_ID"] ?>" >                
+                    <button type="submit" id="comprar">Comprar</button>
                     </form>
                 </div>
-              
         </div>
         <?php } ?>
         

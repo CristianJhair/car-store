@@ -81,7 +81,10 @@ oci_execute($marca);
                     
 
                 </div>
-                <input type="submit" value="CREAR MODELO" class="btn-enviar">
+                <div class="contenedor-inputs">
+                    <input type="submit" value="CREAR MODELO" class="btn-enviar">
+                </div>
+                
             </form>
         </section>
         <?php include 'footer.php'?>

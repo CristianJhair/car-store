@@ -9,7 +9,7 @@ $p = $_POST["contraseña"];
 $validacion = false;
 #$p = sha1($p);
 include 'conexion.php';
-$stmt= oci_parse($db,"SELECT * FROM cliente WHERE email='$c'");
+$stmt= oci_parse($db,"SELECT * FROM cliente WHERE email='$c' AND password='$p'");
 oci_execute($stmt);
 $res = oci_fetch_assoc($stmt);
 
