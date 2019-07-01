@@ -16,8 +16,9 @@ $stmt= oci_parse($db, "SELECT * FROM cotizacion");
 oci_execute($stmt);
 
 while(($user = oci_fetch_assoc($stmt))!=false){
-    $email=$user["EMAIL"];
-    if($email==$co){
+    $cl=$user["CLIENTE_ID"];
+    $p = $user["PLACA"];
+    if($cl==$cliente && $p == $placa){
         $validacion=false;
     }
 }
@@ -30,6 +31,8 @@ if($validacion==true){
 
 if($validacion==true){
     header("Location: index.php");
+}else{
+    header("Location: registro_cotizacion.php?error1");
 }
 
 ?>

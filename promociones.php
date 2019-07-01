@@ -5,7 +5,7 @@ include 'bloquear.php';
 
 <?php
  include 'conexion.php';
- $sentencia= oci_parse($db,"SELECT * FROM modelo where id_catalogo = 22");
+ $sentencia= oci_parse($db,"SELECT * FROM ModeloCatalogo");
  oci_execute($sentencia);
 
 ?>
@@ -26,6 +26,7 @@ include 'bloquear.php';
         
         <section class="main">
         <h1>Ultimas Novedades</h1>
+
         <?php while(($n = oci_fetch_assoc($sentencia))!=false){ ?>
         <div class="prod">
                 <div class="imagen"><img src="<?php echo $n["IMAGEN"] ?>" alt="" height="256" width="280"></div>

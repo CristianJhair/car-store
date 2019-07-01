@@ -24,10 +24,7 @@
                 <li><a href="login.php">Inicar sessión</a></li>
             <?php } else {?>
                 <li><a href="promociones.php">Promociones</a>
-                <ul>
-                    <li><a href="nosotros.php" >Fiestas patrias</a></li>
-                </ul>
-                
+                                
                 </li>
                 <?php if($_SESSION["correo"]!="admin@admin.com"){ ?>
                 <li><a href="perfil.php">Mi perfil</a></li>

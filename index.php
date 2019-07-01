@@ -5,7 +5,7 @@ session_start();
 
 <?php
  include 'conexion.php';
- $sentencia= oci_parse($db,"SELECT * FROM modelo");
+ $sentencia= oci_parse($db,"SELECT * FROM ModelosGeneral");
  oci_execute($sentencia);
  
 
@@ -19,7 +19,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="prefix.js"></script>
-    <title>Bienvenido a MARKETCUBE</title>
+    <title>Bienvenido a USAPERCARS</title>
 </head>
 <body>
     <div class="contenedor">

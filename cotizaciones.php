@@ -5,9 +5,9 @@ include 'bloquear.php';
 
 <?php 
 include 'conexion.php';
-$stmt= oci_parse($db, "SELECT * FROM cotizacion c JOIN pagoextra p on c.pago_extra_id = p.pago_extra_id JOIN cliente cl on c.cliente_id=cl.cliente_id");
+$stmt= oci_parse($db, "SELECT * FROM cotigeneral");
 oci_execute($stmt);
-$i=1;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,14 +17,27 @@ $i=1;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="prefix.js"></script>
-    
+    <style>
+        #lista1{
+            width: 20%;
+            margin-left: 40%;
+        }
+    </style>
     <title>Promociones</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="contenedor">
         <?php include 'cabecera.php' ?>
         <section class="main1">
             <h2 class="h2">Lista de cotizaciones realizadas</h2>
+            <select name="" id="lista1">
+                <option value="CotiGeneral">Todas las cotizaciones</option>
+                <option value="CotiVencida">Cotizaciones vencidas</option>
+                <option value="CotiVigente">Cotizaciones vigentes</option>
+            </select>
             <a type="submit" href="registro_cotizacion.php" id="button-table">Añadir cotización</a>
             <table class="tabla">
                 <thead>
@@ -32,21 +45,13 @@ $i=1;
                         <th>#</th>
                         <th>Cliente</th>
                         <th>Placa</th>
+                        <th>Costo</th>
                         <th>Pago extra</th>
                         <th>Fecha límite</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php while (($n = oci_fetch_assoc($stmt))!=false) { ?>
-                    <tr>
-                        <th><?php echo $i++; ?></th>
-                        <td><?php echo $n["NOMBRE"].', '.$n["APELLIDO"];  ?></td>
-                        <td><?php echo $n["PLACA"]; ?></td>
-                        <td><?php echo 'Por '.$n["DESCRIPCION"].' se paga '.$n["MONTO"]; ?></td>
-                        <td><?php echo $n["FECHA_FIN"];  ?></td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
+                <tbody id="select2lista"></tbody>
             </table>
             
         </section>
@@ -55,3 +60,26 @@ $i=1;
     </div>
 </body>
 </html>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#lista1').val('CotiGeneral');
+		    recargarLista();
+
+		$('#lista1').change(function(){
+			recargarLista();
+		});
+	})
+</script>
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"cotizacionselect.php",
+			data:"modeloSelect=" + $('#lista1').val(),
+			success:function(r){
+				$('#select2lista').html(r);
+			}
+		});
+	}
+</script>

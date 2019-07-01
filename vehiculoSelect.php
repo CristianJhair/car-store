@@ -13,6 +13,6 @@ oci_execute($stmt);
 	}
 
 	echo  $cadena."</select>";
-	
+
 
 ?>
